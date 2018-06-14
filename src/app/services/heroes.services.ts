@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class HeroesService {
 
-    private heroes: Hero[] = [
+    private heros: Hero[] = [
         {
           nombre: 'Aquaman',
           bio: 'El poder más reconocido de Aquaman es la capacidad telepática para comunicarse con la vida marina, la cual puede convocar a grandes distancias.',
@@ -61,11 +61,11 @@ export class HeroesService {
     }
 
     public getHeroes(): Hero[] {
-        return this.heroes;
+        return this.heros;
     }
 
     public getHero(index: number): Hero {
-      return this.heroes[index];
+      return this.heros[index];
     }
 
     public findHero(text: string): Hero[] {
@@ -75,11 +75,13 @@ export class HeroesService {
       text = text.toLowerCase();
 
       // tslint:disable-next-line:prefer-const
-      for (let hero of this.heroes) {
-          // tslint:disable-next-line:prefer-const
+      for (let i = 0; i < this.heros.length; i++) {
+        // tslint:disable-next-line:prefer-const
+          let hero: Hero = this.heros[i];
+        // tslint:disable-next-line:prefer-const
           let name = hero.nombre.toLowerCase();
-
           if (name.indexOf(text) > -1) {
+            hero.index = i;
             heroArray.push(hero);
           }
       }
@@ -95,4 +97,5 @@ export interface Hero {
     img: string;
     aparicion: string;
     casa: string;
+    index?: number;
 }

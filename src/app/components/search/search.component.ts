@@ -21,6 +21,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.heroes = this._heroesService.findHero( this.param );
+    console.log(this.heroes);
   }
 
 
